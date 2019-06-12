@@ -2,13 +2,13 @@ import Segment from "./Segment";
 
 /**
  * 
- * @param {Segment} top 
- * @param {Segment} bot 
+ * @param {Segment} left 
+ * @param {Segment} right 
  */
-function Trapezium(top, bot, color) {
-    if (!(this instanceof Trapezium)) return new Trapezium(top, bot, color);
-    this.top = top;
-    this.bot = bot;
+function Trapezium(left, right, color) {
+    if (!(this instanceof Trapezium)) return new Trapezium(left, right, color);
+    this.left = left;
+    this.right = right;
     this.color = color;
 }
 
@@ -17,7 +17,7 @@ function Trapezium(top, bot, color) {
  * @returns {Trapezium} 
  */
 Trapezium.prototype.merge = function (other) {
-    return new Trapezium(this.top.merge(other.top), this.bot.merge(other.bot))
+    return new Trapezium(this.left.merge(other.left), this.right.merge(other.right))
 };
 
 /**
@@ -25,18 +25,18 @@ Trapezium.prototype.merge = function (other) {
  * @returns {Boolean} 
  */
 Trapezium.prototype.isOverlap = function (other) {
-    return this.bot.isOverlap(other.bot) && this.top.isOverlap(other.top);
+    return this.right.isOverlap(other.right) && this.left.isOverlap(other.left);
 };
 
 /**
  * @returns {Number}
  */
 Trapezium.prototype.square = function () {
-    return (this.bot.length() + this.top.length()) / 2;
+    return (this.right.length() + this.left.length()) / 2;
 };
 
 Trapezium.prototype.clone - function(){
-    return new Trapezium(this.top.clone(), this.bot.clone(), this.color);
-}
+    return new Trapezium(this.left.clone(), this.right.clone(), this.color);
+};
 
 export default Trapezium;
