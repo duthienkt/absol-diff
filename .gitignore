@@ -1,0 +1,7 @@
+/node_modules/
+/dist/
+*.log
+webpack-cli*
+webpack.cmd
+webpack
+.vscode
