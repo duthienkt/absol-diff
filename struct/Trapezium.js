@@ -17,7 +17,7 @@ function Trapezium(left, right, color) {
  * @returns {Trapezium} 
  */
 Trapezium.prototype.merge = function (other) {
-    return new Trapezium(this.left.merge(other.left), this.right.merge(other.right))
+    return new Trapezium(this.left.merge(other.left), this.right.merge(other.right), this.color)
 };
 
 /**
