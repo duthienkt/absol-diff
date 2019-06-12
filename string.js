@@ -33,7 +33,7 @@ export function tokenize(text) {
             result.push({
                 range: Segment(matched.index, simpleToken.lastIndex),
                 value: matched[0],
-                score: score + score * matched[0].length / 1000
+                score: score + score * matched[0].length / 1000000
             });
         }
     }
@@ -90,3 +90,18 @@ export function rightMatchString(a, b) {
     }
     return res;
 }
+
+/**
+ * 
+ * @param {String} text 
+ */
+export function hashCode(text) {
+    var hash = 0, i, chr;
+    if (text.length === 0) return hash;
+    for (i = 0; i < text.length; i++) {
+      chr   = text.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+  };

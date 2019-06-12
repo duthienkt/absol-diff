@@ -5,10 +5,11 @@ import Segment from "./Segment";
  * @param {Segment} top 
  * @param {Segment} bot 
  */
-function Trapezium(top, bot) {
-    if (!(this instanceof Trapezium)) return new Trapezium(top, bot);
+function Trapezium(top, bot, color) {
+    if (!(this instanceof Trapezium)) return new Trapezium(top, bot, color);
     this.top = top;
     this.bot = bot;
+    this.color = color;
 }
 
 /**
@@ -33,5 +34,9 @@ Trapezium.prototype.isOverlap = function (other) {
 Trapezium.prototype.square = function () {
     return (this.bot.length() + this.top.length()) / 2;
 };
+
+Trapezium.prototype.clone - function(){
+    return new Trapezium(this.top.clone(), this.bot.clone(), this.color);
+}
 
 export default Trapezium;
