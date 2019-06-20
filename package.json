@@ -1,6 +1,6 @@
 {
     "name": "absol-diff",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Code compare",
     "main": "index.js",
     "directories": {
