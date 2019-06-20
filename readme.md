@@ -102,7 +102,7 @@ var resultShoultBe = {
 }
 ```
 
-## Work with worker
+## Work with web-worker
 
 `diffworker.js`
 ```js
@@ -110,23 +110,24 @@ import IFrameBridge from 'absol/src/Network/IFrameBridge';
 
 import * as Diff from 'absol-diff';
 
-var brige = IFrameBridge.getInstance();
-brige.diffByLine = function (leftData, rightData) {
+var brigde = IFrameBridge.getInstance();
+brigde.diffByLine = function (leftData, rightData) {
     return Diff.diffByLineText(leftData, rightData);
 }
 
 
-brige.diffByWord = function (leftData, rightData) {
+brigde.diffByWord = function (leftData, rightData) {
     return Diff.diffSingleText(leftData, rightData);
 }
 ```
 
 `main.js`
 ```js
+import IFrameBridge from 'absol/src/Network/IFrameBridge';
 var diffWorker = new IFrameBridge(new Worker('./dist/diffworker.js'));
 var leftData = self.editorLeft.getValue();
 var rightData = self.editorRight.getValue();
 diffWorker.invoke('diffByLine', leftData, rightData).then(function(result){
-
+    //process result data
 });
 ```
