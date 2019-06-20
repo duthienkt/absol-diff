@@ -171,8 +171,16 @@ export function diffByLineText(lText, rText) {
             ac.push(rowSegment);
         }
         return ac;
-    }, [Trapezium(Segment(0, 0), Segment(0, 0), FLAG_MATCHED)])
-    if (trapeziumes[0].square() == 0) trapeziumes.shift();
+    }, [Trapezium(Segment(0, 0), Segment(0, 0), FLAG_MATCHED)]);
+
+    var lastTrapeziume = trapeziumes[trapeziumes.length - 1];
+    if (lastTrapeziume.left.end < lTokens.length || lastTrapeziume.right.end < rTokens.length) {
+        trapeziumes.push(Trapezium(Segment(lastTrapeziume.left.end, lTokens.length), Segment(lastTrapeziume.right.end, rTokens.length), FLAG_NOT_MATCHED))
+    }
+
+    trapeziumes = trapeziumes.filter(function (trp) {
+        return trp.square() > 0;
+    });
     result.trapeziumes = trapeziumes;
     return result;
 }
